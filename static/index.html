@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows Event Log Viewer</title>
+    <style>
+        body {font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        h1 {text-align: center; color: rgb(0, 157, 255);}
+        #container {margin: 0 auto; width: 80%;}
+        #mainTable {border-collapse: collapse; width: 100%; border: solid rgb(255, 0, 225) 10px; box-shadow: 0px 0px 5px black;}
+        #mainTable tr td {border: solid 1px black}
+    </style>
+</head>
+<body>
+    <h1>Windows Event Log Viewer</h1>
+    <div id="container">
+        <table id="mainTable">
+            <tr id="headingColumn">
+                <th>
+                    Event Record ID
+                </th>
+                <th>
+                    Timestamp
+                </th>
+                <th>
+                    Provider
+                </th>
+                <th>
+                    GUID
+                </th>
+                <th>
+                    Event ID
+                </th>
+                <th>
+                    Process ID
+                </th>
+                <th>
+                    Thread ID
+                </th>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+
+        function xmlToJson(xml) {
+	        let obj = {};
+            if (xml.nodeType == 1) {
+                if (xml.attributes.length > 0) {
+                    obj["attributes"] = {};
+                    for (let j = 0; j < xml.attributes.length; j++) {
+                        let attribute = xml.attributes.item(j);
+                        obj["attributes"][attribute.nodeName] = attribute.nodeValue;
+                    }
+                }
+            } else if (xml.nodeType == 3) {
+                obj = xml.nodeValue;
+            }
+            if (xml.hasChildNodes()) {
+                for(let i = 0; i < xml.childNodes.length; i++) {
+                    let item = xml.childNodes.item(i);
+                    let nodeName = item.nodeName;
+                    if (typeof(obj[nodeName]) == "undefined") {
+                        obj[nodeName] = xmlToJson(item);
+                    } else {
+                        if (typeof(obj[nodeName].push) == "undefined") {
+                            let old = obj[nodeName];
+                            obj[nodeName] = [];
+                            obj[nodeName].push(old);
+                        }
+                        obj[nodeName].push(xmlToJson(item));
+                    }
+                }
+            }
+            return obj;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            function generateMenu(menuData, parent) {
+                const ul = document.createElement('ul');
+                parent.appendChild(ul);
+
+                Object.keys(menuData).forEach(item => {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.textContent = item.label;
+                    a.href = item.link || '#';
+                    li.appendChild(a);
+                    ul.appendChild(li);
+
+                    if (item.children && item.children.length) {
+                        generateMenu(item.children, li);
+                        a.addEventListener('click', function(event) {
+                            event.preventDefault();
+                            const submenu = li.querySelector('ul');
+                            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+                        });
+                    }
+                });
+            }
+        
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        response = xhr.responseText;
+                        responseParsed = JSON.parse(response)
+                        responseParsed.forEach(element => {
+
+                            let dataJSON = xmlToJson(new DOMParser().parseFromString(element.data, "text/xml"))
+                            console.log(typeof(dataJSON))
+
+                            console.log(dataJSON)
+
+
+                            let newTr = document.createElement('tr');
+                            let IDTd = document.createElement('td');
+                            let timestampTd = document.createElement('td');
+                            let dataTd = document.createElement('td');
+                            let providerTd = document.createElement('td');
+                            let GUIDTd = document.createElement('td')
+                            let eventIDTd = document.createElement('td')
+                            let processIDTd = document.createElement('td')
+                            let threadIDTd = document.createElement('td')
+                            timestampTd.textContent = element.timestamp;
+                            // dataTd.textContent = element.data;
+                            generateMenu(dataJSON, dataTd)
+                            IDTd.textContent = element.event_record_id;
+                            providerTd.textContent = dataJSON.Event.System.Provider.attributes.Name
+                            GUIDTd.textContent = dataJSON.Event.System.Provider.attributes.Guid
+                            eventIDTd.textContent = dataJSON.Event.System.EventID['#text']
+                            processIDTd.textContent = dataJSON.Event.System.Execution.attributes.ProcessID
+                            threadIDTd.textContent = dataJSON.Event.System.Execution.attributes.ThreadID
+                            console.log(dataJSON.Event)
+
+                            newTr.appendChild(IDTd);
+                            newTr.appendChild(timestampTd);
+                            newTr.appendChild(dataTd);
+                            newTr.appendChild(providerTd)
+                            newTr.appendChild(GUIDTd)
+                            newTr.appendChild(eventIDTd)
+                            newTr.appendChild(processIDTd)
+                            newTr.appendChild(threadIDTd)
+                            document.getElementById("mainTable").appendChild(newTr);
+
+
+
+                        });
+
+                    } else {
+                        console.error("XHR Error")
+                    }
+                }
+            };
+            xhr.open('GET', '/getEventID', true);
+            xhr.send();
+        })
+    </script>
+</body>
+</html>
