@@ -14,4 +14,4 @@ To get started:
 
 # Demo
 
-![Demo GIF](https://github.com/edwinfredy/Windows-Event-Viewer/blob/main/Media/demo.gif)
+![Demo GIF](https://github.com/edwinfredy/Windows-Event-Viewer/blob/main/Media/demo2.gif)
