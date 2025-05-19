@@ -1,7 +1,14 @@
 # Windows Event Viewer
 
 This tool allows viewing Windows events in a GUI. \
-To use the tool, run `server.py`, and go to http://localhost:5000/.
-You can get more results if you run `server.py` as administrator.
 
-This project requires Flask. You can install it with `pip install Flask`.
+# Usage
+
+To get started:
+
+1. Clone the repo: ```git clone https://github.com/edwinfredy/Windows-Event-Viewer.git```
+2. Install dependencies: ```pip install -r requirements.txt```
+3. Run the app: ```streamlit run main.py```
+
+**Some events can only be viewed when the tool has administrator access.**
+
