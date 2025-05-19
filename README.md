@@ -12,3 +12,6 @@ To get started:
 
 **Note: Some events can only be viewed when the tool has administrator access.**
 
+# Demo
+
+![Demo GIF](https://github.com/edwinfredy/Windows-Event-Viewer/blob/main/Media/demo.gif)
