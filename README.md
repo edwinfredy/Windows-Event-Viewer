@@ -125,4 +125,4 @@ Suggestions, issue reports, and pull requests are welcome. When reporting a prob
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](LICENSE).
