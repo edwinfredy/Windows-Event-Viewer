@@ -33,7 +33,7 @@ The application uses Windows' built-in `wevtutil` utility to query event logs. I
 - Python 3
 - Permission to read the event logs you want to inspect
 
-Some logs or records (especially Security events) may require an elevated terminal or additional Windows permissions.
+Some logs or records (especially Security events) may require elevated terminal permissions.
 
 ### Install and run
 
@@ -44,7 +44,7 @@ Some logs or records (especially Security events) may require an elevated termin
    cd Windows-Event-Viewer
    ```
 
-2. **Create and activate a virtual environment (Recommended)**
+2. **Create and activate a virtual environment (Optional but recommended)**
 
    ```powershell
    python -m venv .venv
@@ -71,7 +71,7 @@ The interface should open automatically. If not, Streamlit will have printed a l
 2. Choose an event-level filter, or leave it set to **Any**.
 3. Optionally enter an event ID.
 4. Optionally enter a start time and/or end time in UTC.
-5. Set how many events to retrieve and select **Query Logs**.
+5. Set how many events to retrieve and click on **Query Logs**.
 6. Expand an event to inspect its parsed details.
 
 For time filters, use a UTC timestamp compatible with Windows Event Log queries, for example:
@@ -81,17 +81,6 @@ For time filters, use a UTC timestamp compatible with Windows Event Log queries,
 ```
 
 Leave optional filters empty when you do not need them. The number-of-events control limits how many records the query requests; it does not guarantee that the selected log contains that many matching events.
-
-## Project structure
-
-```text
-Windows-Event-Viewer/
-├── Media/
-│   └── demo2.gif        # Interface demo
-├── main.py              # Streamlit UI and event-log query logic
-├── requirements.txt     # Python dependencies
-└── README.md
-```
 
 ## Technology
 
