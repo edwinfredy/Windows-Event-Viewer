@@ -1,4 +1,4 @@
-# Windows Event Viewer
+# WinEvent Explorer
 
 <p align="center">
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white" alt="Python"></a>
@@ -8,10 +8,10 @@
 
 **A lightweight, browser-based interface for exploring local Windows Event Logs.**
 
-Windows Event Viewer puts useful system diagnostics in reach, but drilling into individual records can take time. This project offers a simple Streamlit interface for querying common Windows logs, narrowing results with filters, and inspecting event details in one place.
+WinEvent Explorer puts useful system diagnostics in reach, but drilling into individual records can take time. This project offers a simple Streamlit interface for querying common Windows logs, narrowing results with filters, and inspecting event details in one place.
 
 <p align="center">
-  <img src="Media/demo2.gif" alt="Demo of the Windows Event Viewer interface" width="850">
+  <img src="Media/demo2.gif" alt="Demo of the WinEvent Explorer interface" width="850">
 </p>
 
 
@@ -33,7 +33,7 @@ The application uses Windows' built-in `wevtutil` utility to query event logs. I
 - Python 3
 - Permission to read the event logs you want to inspect
 
-Some logs or records—especially Security events—may require an elevated terminal or additional Windows permissions.
+Some logs or records (especially Security events) may require an elevated terminal or additional Windows permissions.
 
 ### Install and run
 
@@ -117,7 +117,7 @@ The project is intentionally compact: the interface and query logic are containe
 
 ## Scope
 
-This project focuses on querying and inspecting recent local event records. It does not currently provide live monitoring, `.evtx` file import, saved searches, or CSV/JSON export.
+This project focuses on querying and inspecting recent local event records. It does not currently provide live monitoring, `.evtx` file import, saved searches, or CSV/JSON export. Contributions are welcome.
 
 ## Contributing
 
