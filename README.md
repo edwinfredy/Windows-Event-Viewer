@@ -1,5 +1,11 @@
 # Windows Event Viewer
 
+<p align="center">
+  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white" alt="Python"></a>
+  <a href="https://streamlit.io/"><img src="https://img.shields.io/badge/UI-Streamlit-FF4B4B?logo=streamlit&logoColor=white" alt="Streamlit"></a>
+  <img src="https://img.shields.io/badge/Platform-Windows-0078D4?logo=windows&logoColor=white" alt="Windows">
+</p>
+
 **A lightweight, browser-based interface for exploring local Windows Event Logs.**
 
 Windows Event Viewer puts useful system diagnostics in reach, but drilling into individual records can take time. This project offers a simple Streamlit interface for querying common Windows logs, narrowing results with filters, and inspecting event details in one place.
@@ -8,11 +14,6 @@ Windows Event Viewer puts useful system diagnostics in reach, but drilling into 
   <img src="Media/demo2.gif" alt="Demo of the Windows Event Viewer interface" width="850">
 </p>
 
-<p align="center">
-  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white" alt="Python"></a>
-  <a href="https://streamlit.io/"><img src="https://img.shields.io/badge/UI-Streamlit-FF4B4B?logo=streamlit&logoColor=white" alt="Streamlit"></a>
-  <img src="https://img.shields.io/badge/Platform-Windows-0078D4?logo=windows&logoColor=white" alt="Windows">
-</p>
 
 ## What it does
 
