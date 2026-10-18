@@ -44,14 +44,14 @@ Some logs or records—especially Security events—may require an elevated term
    cd Windows-Event-Viewer
    ```
 
-2. **(Recommended) Create and activate a virtual environment**
+2. **Create and activate a virtual environment (Recommended)**
 
    ```powershell
    python -m venv .venv
    .\.venv\Scripts\Activate.ps1
    ```
 
-3. **Install the dependency**
+3. **Install dependencies**
 
    ```powershell
    python -m pip install -r requirements.txt
@@ -63,7 +63,7 @@ Some logs or records—especially Security events—may require an elevated term
    streamlit run main.py
    ```
 
-Streamlit will print a local URL in the terminal. Open that URL in your browser to use the interface.
+The interface should open automatically. If not, Streamlit will have printed a localhost URL in the terminal. Open that URL in your browser.
 
 ## Using the interface
 
@@ -77,7 +77,7 @@ Streamlit will print a local URL in the terminal. Open that URL in your browser 
 For time filters, use a UTC timestamp compatible with Windows Event Log queries, for example:
 
 ```text
-2025-01-31T00:00:00.000Z
+2026-01-31T00:00:00.000Z
 ```
 
 Leave optional filters empty when you do not need them. The number-of-events control limits how many records the query requests; it does not guarantee that the selected log contains that many matching events.
